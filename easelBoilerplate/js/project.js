@@ -1,39 +1,60 @@
 var project = {
+  
+  //conf
+  stage: {
+    w: $(window).width()-10,
+    h: $(window).height()-10
+  },
+  
+  //control vars
+  frame : 0,
+  stop  : false,
+
   start: function(){
-    console.log('>>>');
+    console.log('init app');
+
     _.bindAll(this);
 
-    //create layer
-    this.layer = new collie.Layer({
-      width: $(window).outerWidth(),
-      height: $(window).outerHeight()
+    this.timeStamp = new Date().getTime();
+
+    this.stage = new Kinetic.Stage({
+      container: 'container',
+      width: this.stage.w,
+      height: this.stage.h
     });
 
-    // collie.ImageManager.add({
-    //   logo: "http://jindo.dev.naver.com/collie/img/small/logo.png"
-    // },this.createObjects);
+    this.controller = new Controller( this.stage );
 
-    this.createObjects();
-
+    this.startAnimation();
   },
 
-  createObjects: function(){
-    
-    this.logo = new collie.MovableObject({
-      x: "center",
-      y: "center",
-      backgroundImage: "logo",
-      velocityRotate: 50
-    }).addTo( this.layer );
+  startAnimation: function(){
+    //setup loop
+    var project = this;
+
+    (function animloop(){
+      if( project.stop ){
+        return;
+      }
+      requestAnimFrame(animloop);
+      project.update();
+    })();
+  },
+
+  update : function(){
+    // this.stop = true;
+    // $('#container').trigger('update');
+
+    this.controller.update( new Date().getTime() - this.timeStamp );
 
     this.render();
   },
 
   render: function(){
-    collie.Renderer.addLayer( this.layer );
-    collie.Renderer.load( document.getElementById("container") );
-    collie.Renderer.start();
+    this.stage.draw();
   }
+
+
 };
 
 $(document).ready(function(){
