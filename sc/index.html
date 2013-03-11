@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Sc</title>
+  
+  <script src="//connect.soundcloud.com/sdk.js"></script>
+  <script>
+    SC.initialize({
+      client_id: "b45b1aa10f1ac2941910a7f0d10f8e28",
+      redirect_uri: "http://localhost:3001/callback.html"
+    });
+
+    SC.connect(function() {
+      SC.get('/me', function(me) { 
+        alert('Hello, ' + me.username); 
+      });
+    });
+
+  </script>
+  
+</head>
+<body>
+  
+</body>
+</html>

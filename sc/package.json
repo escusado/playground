@@ -1,0 +1,12 @@
+{
+  "name": "hello-world",
+  "description": "hello world test app",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express" : "3.x",
+    "http-get" : "0.5.5",
+    "cli-color" : "0.2.1",
+    "underscore": "1.4.3"
+  }
+}

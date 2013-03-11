@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Sc</title>
+  
+  <script src="//connect.soundcloud.com/sdk.js"></script>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script>
+    var user_id = '72c6ae4ae439d253d88a81db48ee9e20';
+
+    $(document).ready(function(){
+      SC.initialize({
+        client_id: user_id,
+        redirect_uri: "http://localhost:3001/callback.html",
+      });
+
+      // initiate auth popup
+      SC.connect(function() {
+        SC.get('/me/favorites', function(me) { 
+          debugger
+          alert('Hello, ' + me.username); 
+        });
+      });
+
+    });
+
+
+    // $(document).ready(function(){
+      
+    //   console.log('>>> start');
+
+    //   var data = {
+    //     client_id : '72c6ae4ae439d253d88a81db48ee9e20',
+    //     client_secret : '9868698d244ec3ddbafacf405a4b9b5d',
+    //     grant_type : 'authorization_code',
+    //     redirect_uri : 'http://localhost:3001/callback.html',
+    //     code : '0000000EYAA1CRGodSoKJ9WsdhqVQr3g'
+    //   };
+
+    //   $.ajax({
+    //   type: "POST",
+    //   url: 'https://api.soundcloud.com/oauth2/token',
+    //   data: data,
+    //   success: function(data){
+    //     debugger
+    //   },
+    //   dataType: 'json'
+    //   });
+
+    // });
+
+
+  </script>
+  
+</head>
+<body>
+  
+</body>
+</html>
